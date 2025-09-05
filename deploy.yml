@@ -1,0 +1,38 @@
+---
+- name: Desplegar app 
+  hosts: local
+  become: yes
+
+  vars:
+    repo_url: "https://github.com/Roberto3020/PlayListNow.git"
+    repo_dest: "/home/sysadmin/playlistsnow"
+
+  tasks:
+    - name: Instalar Git
+      apt:
+        name: git
+        state: present
+        update_cache: yes
+
+    - name: Instalar Docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
+    - name: Instalar Docker Compose
+      apt:
+        name: docker-compose
+        state: present
+
+    - name: Clonar repositorio del proyecto
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ repo_dest }}"
+        version: master
+        force: yes
+
+    - name: Ejecutar docker-compose up
+      shell: docker-compose up -d
+      args:
+        chdir: "{{ repo_dest }}"
