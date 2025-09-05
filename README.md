@@ -3,8 +3,6 @@
 ## Requisitos:
 
 - Ansible instalado
-- Acceso sudo (pedirá contraseña)
-- Clave SSH si se ejecuta remotamente
 
 ## 1. Clonar este repo de despliegue:
 
