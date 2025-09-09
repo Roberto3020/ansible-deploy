@@ -1,6 +1,6 @@
 ---
 - name: Desplegar app 
-  hosts: local
+  hosts: server
   become: yes
 
   vars:
